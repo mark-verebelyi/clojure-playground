@@ -1,6 +1,6 @@
-(ns clojure-playground.core-test
+(ns zzz.core-test
   (:require [clojure.test :refer :all]
-            [clojure-playground.core :refer :all]))
+            [zzz.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

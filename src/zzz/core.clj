@@ -1,4 +1,4 @@
-(ns clojure-playground.core
+(ns zzz.core
   (:gen-class))
 
 (defn -main
