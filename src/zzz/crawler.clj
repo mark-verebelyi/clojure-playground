@@ -14,6 +14,21 @@
 (defn parse-hrefs [attrs]
   (map :href attrs))
 
+(defn single-hashmark [href]
+  (= href "#"))
+
+(defn relative-href [href]
+  (.startsWith href "/"))
+
+(defn to-category [href]
+  (cond
+    (single-hashmark href) :single-hashmark
+    (relative-href href) :relative-href
+    :else :valid))
+
+(defn categorize [hrefs]
+  (group-by to-category hrefs))
+
 (defn crawl [url]
   (let [html (fetch-html url)
         anchors (parse-anchors html)
