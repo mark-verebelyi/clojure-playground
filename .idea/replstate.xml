@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ReplState" timestamp="1412176838451">{:repl-history {:ide [], :local [], :remote []}}</component>
+  <component name="ReplState" timestamp="1412232204569">{:repl-history {:ide [], :local [&quot;(zzz.crawler/crawl \&quot;http://index.hu\&quot;)&quot; &quot;(categorize (zzz.crawler/crawl \&quot;http://index.hu\&quot;))&quot; &quot;(zzz.crawler/categorize (zzz.crawler/crawl \&quot;http://index.hu\&quot;))&quot;], :remote []}}</component>
 </project>
 

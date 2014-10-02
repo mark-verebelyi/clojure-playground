@@ -1,18 +1,6 @@
 (ns zzz.crawler
   (:import (java.net URL))
-  (:require [net.cgrand.enlive-html :as html-parser]))
-
-(defn fetch-html [url]
-  (html-parser/html-resource (URL. url)))
-
-(defn parse-anchors [html]
-  (html-parser/select html [[:a (html-parser/attr? :href)]]))
-
-(defn parse-attrs [anchors]
-  (map :attrs anchors))
-
-(defn parse-hrefs [attrs]
-  (map :href attrs))
+  (:require [zzz.parser :as parser]))
 
 (defn single-hashmark [href]
   (= href "#"))
@@ -29,9 +17,16 @@
 (defn categorize [hrefs]
   (group-by to-category hrefs))
 
+(defn show [header list]
+  (do
+    (println header)
+    (doseq [item list]
+      (println (str "\t" item)))))
+
 (defn crawl [url]
-  (let [html (fetch-html url)
-        anchors (parse-anchors html)
-        attrs (parse-attrs anchors)
-        hrefs (parse-hrefs attrs)]
-    hrefs))
+  (let [hrefs (parser/crawl url)
+        categorized (categorize hrefs)]
+    (do
+      (show "single-hashmark" (categorized :single-hashmark))
+      (show "relative-href" (categorized :relative-href))
+      (show "valid" (categorized :valid)))))
